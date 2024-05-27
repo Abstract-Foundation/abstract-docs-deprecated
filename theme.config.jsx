@@ -2,14 +2,14 @@ export default {
   logo: (
     <svg height="20" viewBox="0 0 600 86" xmlns="http://www.w3.org/2000/svg">
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M189.176 0.21698V27.4684H193.426C194.254 22.4137 198.973 16.1915 209.708 16.1915C226.114 16.1915 236.367 29.46 236.367 46.2587V48.0168C236.367 64.9253 226.101 78.2076 209.708 78.2076C198.973 78.2076 194.364 71.9854 193.426 66.9307H189.176V76.5594H179.738V0.21698H189.176ZM207.818 70.1037C219.381 70.1037 226.694 61.5326 226.694 48.0306V46.2724C226.694 32.7703 219.381 24.4328 207.818 24.4328C196.255 24.4328 189.176 32.7703 189.176 46.2724V48.0306C189.176 61.5326 196.02 70.1037 207.818 70.1037Z"
         fill="#00DE73"
       />
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M140.15 16.1915C150.886 16.1915 155.605 22.4137 156.433 27.4684H160.682V17.8398H170.121V76.5594H160.682V66.9307H156.433C155.494 71.9854 150.886 78.2076 140.15 78.2076C123.744 78.2076 113.492 64.9391 113.492 48.0168V46.2587C113.492 29.46 123.758 16.1915 140.15 16.1915ZM142.041 70.1037C153.838 70.1037 160.682 61.5326 160.682 48.0306V46.2724C160.682 32.7703 153.838 24.4328 142.041 24.4328C130.243 24.4328 123.165 32.7703 123.165 46.2724V48.0306C123.165 61.5326 130.478 70.1037 142.041 70.1037Z"
         fill="#00DE73"
       />
@@ -26,8 +26,8 @@ export default {
         fill="#00DE73"
       />
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M443.743 16.1915C454.478 16.1915 459.197 22.4137 460.025 27.4684H464.275V17.8398H473.713V76.5594H464.275V66.9307H460.025C459.087 71.9854 454.478 78.2076 443.743 78.2076C427.337 78.2076 417.085 64.9391 417.085 48.0168V46.2587C417.085 29.46 427.351 16.1915 443.743 16.1915ZM445.633 70.1037C457.431 70.1037 464.275 61.5326 464.275 48.0306V46.2724C464.275 32.7703 457.431 24.4328 445.633 24.4328C433.836 24.4328 426.757 32.7703 426.757 46.2724V48.0306C426.757 61.5326 434.07 70.1037 445.633 70.1037Z"
         fill="#00DE73"
       />
@@ -65,6 +65,35 @@ export default {
       <link rel="icon" href="/favicon.png" type="image/png" />
     </>
   ),
+  useNextSeoProps() {
+    return {
+      titleTemplate: "%s - Abstract Docs",
+      description: "Documentation for Abstract",
+      openGraph: {
+        type: "website",
+        locale: "en_IE",
+        siteName: "Abstract Docs",
+        description: "Documentation for Abstract",
+      },
+      additionalLinkTags: [
+        {
+          rel: "icon",
+          href: "/favicon.ico",
+        },
+        {
+          rel: "icon",
+          href: "/favicon.png",
+          type: "image/png",
+        },
+        {
+          rel: "apple-touch-icon",
+          href: "/favicon.png",
+          type: "image/png",
+        },
+      ],
+    };
+  },
+
   primaryHue: {
     // light green
     // #00DE73
