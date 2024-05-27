@@ -1,0 +1,22 @@
+{
+  "name": "abstract-docs",
+  "version": "0.0.1",
+  "description": "Abstract Docs",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "^14.2.3",
+    "nextra": "^2.13.4",
+    "nextra-theme-docs": "^2.13.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "20.12.12",
+    "typescript": "^5.4.5"
+  }
+}

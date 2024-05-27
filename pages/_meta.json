@@ -1,0 +1,13 @@
+{
+    "index": "Introduction",
+    "-- General": {
+        "type": "separator",
+        "title": "General"
+    },
+    "overview": "Overview",
+    "-- For Devs": {
+        "type": "separator",
+        "title": "For Devs"
+    },
+    "setup": "Set up"
+}
