@@ -1,1 +1,36 @@
 # Abstract Overview
+
+Abstract is an Ethereum rollup.
+
+Rollups are a layer 2 scaling solution built on top of Ethereum.
+Abstract is EVM-compatible which means you can do most things on Abstract that you would be able to do on Ethereum mainnet - deploy contracts, use Web3 apps, interact with wallets, etc.
+However, because Abstract is a rollup, transactions will be cheaper and faster compared to Ethereum.
+Abstract is an ZK rollup which means it inherits many security properties from Ethereum.
+
+## How Rollups Work
+
+The core idea behind a rollup is to move computation from one blockchain (such as Ethereum) onto another blockchain (the rollup) which can process transactions quicker.
+Rollups will execute transactions, compress and bundle the transaction data, and post this data back to the underlying blockchain (the layer 1).
+This data is utilized by rollup nodes to derive the correct state of the chain, as well as by the Layer 1 network to determine the validity of withdrawals.
+
+Most rollups today have a centralized sequencer that quickly takes incoming transactions, orders the transactions, and publishes the ordering for other nodes to consume.
+The sequencer can process transactions quickly, which is why transactions are faster on rollups compared to mainnet (1-2 secs vs 12 secs).
+Users can alternatively submit transactions directly to the rollup bridge contract on L1 if they do not trust the sequencer.
+However, this process is slower and more expensive than submitting to a sequencer, and should only be used for deposits or in the case of a malicious sequencer.
+
+## ZK Rollup
+
+Abstract is a zk rollup which means it uses "validity proofs" to prove to Ethereum L1 that a state transition happened on the L2.
+Transactions are executed on the L2 zkEVM and aggregated into batches. The data for each batch is submitted to the L1.
+A prover then creates a zero-knowledge (validity) proof of all the transactions within the batch that can be verified by a smart contract on Ethereum.
+Verifying the validity of a proof is much cheaper than re-executing every L2 transaction on L1, which is why zk rollups are magnitudes cheaper than L1.
+Furthermore, Abstract uses state diffs, which reduces the amount of data submitted to L1 and further reduces costs.
+
+## Rollup Tech
+
+Abstract is built using [zkSyncs's ZK stack](https://docs.zksync.io/zk-stack).
+ZK stack is the latest version of zkSync technology which includes a complete zk rollup system, a sequencer, token bridges, fraud proofs, and more.
+Complete documentation of ZK stack can be found on [Github](https://github.com/matter-labs/zksync).
+
+ZK Stack is EVM compatible, so most contracts that are written for mainnet can be deployed onto Abstract without any modifications.
+Applications requiring read or write access to Abstract can employ the same processes used on mainnet, with the only difference being a different RPC and chain ID.
