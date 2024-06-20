@@ -1,0 +1,58 @@
+# Gas fees on Abstract
+
+## Overview
+
+Gas fees on Abstract are computed in the same manner as gas fees on other ZK stack chains.
+For a full explanation of gas costs on Abstract, you can read this [detailed breakdown](https://docs.zksync.io/zk-stack/concepts/fee-mechanism#base-fee-and-gas-limits).
+
+## Background
+
+Before explaining how L2 gas fees work, it's important to understand how gas fees are derived on Ethereum mainnet (L1). 
+Gas fees are calculated by multiplying the total gas units used by the cost per unit of gas.
+
+The number of gas units required is determined by the amount of computation and storage a transaction uses.
+Additionally, every transaction on mainnet incurs a minimum overhead cost of [21,000 gas units](https://ethereum-magicians.org/t/some-medium-term-dust-cleanup-ideas/6287#why-do-txs-cost-21000-gas-1).
+
+The price per unit of gas is broken down into two parts: a base fee and a priority fee.
+The base fee is calculated based on the current blockspace demand - the more demand, the higher the base fee.
+This portion of the fee is burned by the network.
+The priority fee is the amount that users are willing to pay block proposers to get their transaction included in the current block.
+This portion of the fee is given to the block proposer (validator) after the transaction is executed.
+
+Here's the formula for calculating the total gas required for an L1 transaction:
+```
+gas_paid = gas_units * gas_price
+```
+Which can be expanded out to:
+```
+gas_paid = (21_000 + execution_cost) * (base_fee + priority_fee)
+```
+A full breakdown of Ethereum mainnet gas costs can be found [here](https://ethereum.org/en/developers/docs/gas/).
+
+## How Abstract gas fees work
+
+L2 gas fees are computed in a different manner from L1 gas fees. L2 gas fees are broken down into two parts: L2 execution and batch overhead.
+
+L2 execution gas is very similar to L1 execution gas. This value is determined based on the amount of compute and storage used in a transaction.
+The amount of gas units consumed per transaction is similar to Ethereum mainnet because Abstract is EVM-compatible.
+Unlike L1 however, the L2 portion of the gas fees are retained by the sequencer instead of being burned.
+
+The formula for computing the L2 execution gas costs looks like this:
+```
+L2_execution = L2_gas_units * L2_gas_price
+```
+
+The batch overhead gas is used to cover the cost of posting transaction data back to the data availability layer (L1 or an alternative system) and for proving circuits.
+Transactions are batched and sent to the DA layer to determine the final ordering of each transaction. Batching reduces costs and leads to greater throughput.
+Circuit proofs are created to validate proposed L2 state transitions on the L1 validating bridge contract.
+
+```
+overhead_gas ~= L1_base_fee * txn_size (bytes) + K (constant to cover proving costs)
+```
+
+The total gas fees a user pays for a txn on Abstract can be roughly represented by this formula:
+```
+txn_fee = L2_execution + overhead_gas
+```
+
+The full derivations for Abstract gas fees can be found [here](https://docs.zksync.io/zk-stack/concepts/fee-mechanism#formulas-and-constants-for-calculating-fees).

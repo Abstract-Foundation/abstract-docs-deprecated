@@ -5,6 +5,7 @@
         "title": "General"
     },
     "overview": "Overview",
+    "fees": "Fees",
     "-- For Devs": {
         "type": "separator",
         "title": "For Devs"
