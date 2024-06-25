@@ -1,14 +1,15 @@
 {
-    "index": "Introduction",
-    "-- General": {
-        "type": "separator",
-        "title": "General"
-    },
-    "overview": "Overview",
-    "fees": "Fees",
-    "-- For Devs": {
-        "type": "separator",
-        "title": "For Devs"
-    },
-    "setup": "Set Up"
+  "index": "Introduction",
+  "-- General": {
+    "type": "separator",
+    "title": "General"
+  },
+  "overview": "Overview",
+  "fees": "Fees",
+  "-- Network Info": {
+    "type": "separator",
+    "title": "For Everyone"
+  },
+  "network_info": "Network Info",
+  "setup": "Set Up"
 }
