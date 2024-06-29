@@ -1,4 +1,6 @@
-export default {
+import React from "react";
+import { useConfig, DocsThemeConfig } from "nextra-theme-docs";
+const config: DocsThemeConfig = {
   logo: (
     <svg height="20" viewBox="0 0 600 86" xmlns="http://www.w3.org/2000/svg">
       <path
@@ -93,11 +95,14 @@ export default {
       ],
     };
   },
-
+  footer: {
+    text: "Abstract Docs © 2024",
+  },
   primaryHue: {
     // light green
-    // #00DE73
     light: (0, 22, 115),
     dark: (0, 22, 115),
   },
 };
+
+export default config;
