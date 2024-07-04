@@ -36,7 +36,7 @@ import "@matterlabs/hardhat-zksync";
 ```
 
 Networks on Abstract require two different URL endpoints: one for layer 1 (Ethereum or Sepolia), and one for layer 2 (Abstract).
-This is how you add the %%zk_testnet_name%% to your list of networks in the `hardhat.config.ts`:
+This is how you add the Abstract Testnet to your list of networks in the `hardhat.config.ts`:
 
 ```typescript
 const config: HardhatUserConfig = {
@@ -45,8 +45,8 @@ const config: HardhatUserConfig = {
       zksync: false,
     },
     abstractTestnet: {
-      url: "%%abs_testnet_rpc_url%%",
-      ethNetwork: "%%abs_testnet_identifier%%",
+      url: "https://api.testnet.abs.xyz",
+      ethNetwork: "sepolia",
       zksync: true,
     },
   },
@@ -82,8 +82,8 @@ networks: {
       zksync: false, // Set to false to target other networks.
     },
     abstractTestnet: {
-      url: "%%zk_testnet_rpc_url%%", // The testnet RPC URL of Abstract network.
-      ethNetwork: "%%zk_testnet_identifier%%", // The identifier of the network (e.g. `mainnet` or `sepolia`)
+      url: "https://api.testnet.abs.xyz", // The testnet RPC URL of Abstract network.
+      ethNetwork: "sepolia", // The identifier of the network (e.g. `mainnet` or `sepolia`)
     zksync: true, // Set to true to target Abstract.
     }
 },
@@ -101,7 +101,7 @@ import "@matterlabs/hardhat-zksync";
 
 const config: HardhatUserConfig = {
   zksolc: {
-    version: "latest", // Uses latest available in %%zk_git_repo_zksolc-bin%%
+    version: "latest",
     settings: {},
   },
   defaultNetwork: "abstractTestnet",
@@ -118,8 +118,8 @@ const config: HardhatUserConfig = {
       zksync: false,
     },
     abstractTestnet: {
-      url: "%%abs_testnet_rpc_url%%",
-      ethNetwork: "%%abs_testnet_identifier%%",
+      url: "https://api.testnet.abs.xyz",
+      ethNetwork: "sepolia",
       zksync: true,
     },
   },
