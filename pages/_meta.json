@@ -11,6 +11,7 @@
   },
   "fees": "Fees",
   "evm_differences": "EVM Differences",
+  "account_abstraction": "Account Abstraction",
   "-- Using Abstract": {
     "type": "separator",
     "title": "Using Abstract"
