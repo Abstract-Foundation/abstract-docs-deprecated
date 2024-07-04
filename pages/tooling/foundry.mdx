@@ -1,8 +1,16 @@
 # Foundry
 
+This guide shows you how to configure Foundry to work on Abstract. The content on this page was forked from the [zkSync docs](https://docs.zksync.io/build/tooling/foundry/getting-started).
+
 ## Prerequisites
 
-The primary prerequisite for using `foundry-zksync` is the [Rust Compiler](https://www.rust-lang.org/tools/install).
+To use Foundry on Abstract, you must use `foundry-zksync`, a specialized fork of [Foundry](https://github.com/foundry-rs/foundry), tailored for zkStack chains.
+It extends Foundry's capabilities for Ethereum app development to support Abstract, allowing for the compilation,
+deployment, testing, and interaction with smart contracts on Abstract.
+`foundry-zksync` introduces `--zksync` flag, or the use of `vm.zkVm(true)` to target the Abstract VM.
+For more info on `foundry-zksync`, you can find read the [official documentation](https://docs.zksync.io/build/tooling/foundry/overview).
+
+The primary prerequisite for installing `foundry-zksync` is the [Rust Compiler](https://www.rust-lang.org/tools/install).
 
 ## Installation Guide
 
