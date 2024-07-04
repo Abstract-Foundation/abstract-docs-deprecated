@@ -1,0 +1,31 @@
+# EVM Differences
+
+Abstract is based on zkSync's zkStack VM which is EVM compatible, but not EVM equivalent.
+This means that most smart contracts will work out of the box on Abstract, but there are cases where contracts may need to be rewritten.
+This page details the various differences between Abstract's VM and the standard EVM.
+
+## EVM Instructions
+
+There are several instructions in Abstract's VM that function differently from the standard EVM.
+This list includes `CREATE`, `CREATE2`, `CALL`, `STATICCALL`, and `DELEGATECALL`.
+You can find the full list and an explanation of each difference in these [docs](https://docs.zksync.io/build/developer-reference/ethereum-differences/evm-instructions).
+
+## Nonces
+
+In Ethereum, nonces prevent replay attacks, ensure transaction order, and are used in address derivation for externally owned accounts (EOAs).
+For smart contracts, nonces primarily determine the deployment address via create or create2 functions and can increase multiple times within a transaction.
+
+Abstract, meanwhile, has native account abstraction which utilizes two types of nonces: a transaction nonce for validation and a deployment nonce for contract creation.
+This separaration of nonces allows accounts to send many transactions by following only one nonce value and allows contracts to deploy many other contracts without conflicting with the transaction nonce.
+
+A full explanation of the nonce differences between Abstract and Ethereum can be found [here](https://docs.zksync.io/build/developer-reference/ethereum-differences/nonces).
+
+## Precompiles
+
+Some EVM cryptographic precompiles (notably pairings and RSA) aren't currently available. However, pairing is
+prioritized to allow deployment of both ZK chains and protocols like Aztec/Dark Forest without modifications.
+
+Ethereum cryptographic primitives like `ecrecover`, `keccak256`, `sha256`, `ecadd` and `ecmul` are supported as precompiles.
+No actions are required from your side as all the calls to the precompiles are done by the compilers under the hood.
+
+It's important to be aware that the gas costs and behaviors of these precompiles when invoked via delegatecall may differ from those on Ethereum.
