@@ -5,13 +5,10 @@ The content on this page was forked from the [zkSync docs](https://docs.zksync.i
 
 ## Overview
 
-Abstract offers multiple Hardhat plugins with different features.
-
 #### Non-default paths are not supported yet
 
 - Contract files must be included in the `contracts` folder and deployment scripts must be included in the `deploy` folder.
 - Support for custom paths will be included in the future.
-::
 
 ## Install dependencies
 
@@ -21,25 +18,14 @@ So the first step is to install the compiler and deployer Hardhat plugins:
 
 If you're using Vyper, replace `@matterlabs/hardhat-zksync-solc` with `@matterlabs/hardhat-zksync-vyper`
 
-::code-group
 
-```bash [npm]
+```bash
+# For npm
 npm i -D @matterlabs/hardhat-zksync
-```
 
-```bash [yarn]
+# For yarn
 yarn add -D @matterlabs/hardhat-zksync
 ```
-
-```bash [pnpm]
-pnpm i -D @matterlabs/hardhat-zksync
-```
-
-```bash [bun]
-bun add @matterlabs/hardhat-zksync --dev
-```
-
-::
 
 ## Configuration changes
 
@@ -150,17 +136,13 @@ export default config;
 
 To compile your contracts for Abstract, run:
 
-::code-group
+```bash
+# For npm
+npm hardhat compile  --network abstractTestnet
 
-```bash [yarn]
+# For yarn
 yarn hardhat compile --network abstractTestnet
 ```
-
-```bash [npm]
-npm hardhat compile  --network abstractTestnet
-```
-
-::
 
 Passing the `--network` flag we make sure Hardhat will use the zksolc compiler (or zkvyper).
 This command will compile all contracts in the `/contracts` folder and create the folders `artifacts-zk` and `cache-zk`.
@@ -209,17 +191,13 @@ To obtain Sepolia ETH please refer to the [network faucets page](/tools_integrat
 
 Include your deployment script in the `deploy` folder and execute it running:
 
-::code-group
+```bash
+# For npm
+npm hardhat deploy-zksync --script SCRIPT_FILENAME.ts --network abstractTestnet
 
-```bash [yarn]
+# For yarn
 yarn hardhat deploy-zksync --script SCRIPT_FILENAME.ts --network abstractTestnet
 ```
-
-```bash [npm]
-npm hardhat deploy-zksync --script SCRIPT_FILENAME.ts --network abstractTestnet
-```
-
-::
 
 If you don't include the `--script` option, all script files inside the `deploy` folder will be executed in alphabetical order.
 
@@ -244,4 +222,4 @@ You can read more in the [`zksync-ethers` documentation](https://docs.zksync.io/
 
 ## Verify contracts
 
-Verify your contracts programmatically using the `Hardhat verify plugin`.
+Verify your contracts programmatically using the [`Hardhat verify plugin`](https://docs.zksync.io/build/tooling/hardhat/hardhat-zksync-verify).
