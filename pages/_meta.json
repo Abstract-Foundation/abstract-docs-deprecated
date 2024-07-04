@@ -1,18 +1,23 @@
 {
-  "index": "Introduction",
   "-- General": {
     "type": "separator",
     "title": "General"
   },
+  "index": "Introduction",
   "overview": "Overview",
-  "fees": "Fees",
-  "-- Abstract Details": {
+  "-- Architecture": {
     "type": "separator",
-    "title": "Abstract Details"
+    "title": "Architecture"
+  },
+  "fees": "Fees",
+  "evm_differences": "EVM Differences",
+  "-- Using Abstract": {
+    "type": "separator",
+    "title": "Using Abstract"
   },
   "network_info": "Network Info",
   "tools_integrations": "Tools & Integrations",
-  "using_abstract": "Using Abstract",
+  "wallet_setup": "Wallet Setup",
   "-- Contract Development": {
     "type": "separator",
     "title": "Contract Development"
