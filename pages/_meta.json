@@ -6,16 +6,16 @@
   },
   "overview": "Overview",
   "fees": "Fees",
-  "-- For Everyone": {
+  "-- Abstract Details": {
     "type": "separator",
-    "title": "For Everyone"
+    "title": "Abstract Details"
   },
   "network_info": "Network Info",
   "tools_integrations": "Tools & Integrations",
   "using_abstract": "Using Abstract",
-  "-- For Devs": {
+  "-- Contract Development": {
     "type": "separator",
-    "title": "For Devs"
+    "title": "Contract Development"
   },
   "tooling": "Tooling",
   "your_first_contract": "Your First Contract"
