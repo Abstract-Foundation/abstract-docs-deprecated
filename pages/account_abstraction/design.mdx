@@ -39,7 +39,7 @@ which practically enforces the sequential ordering of nonces.
 
 In the future, it is planned to support efficient proofs of transaction inclusion
 on Abstract. This would require us to calculate the transaction's hash in the
-[bootloader](/zk-stack/components/zksync-evm/bootloader). Since these
+[bootloader](https://docs.zksync.io/zk-stack/components/zksync-evm/bootloader). Since these
 calculations won't be free to the user, it is only fair to include the
 transaction's hash in the interface of the AA methods (in case the accounts may
 need this value for some reason). That's why all the methods of the `IAccount` and
@@ -67,7 +67,7 @@ is charged from the user. This function should perform the execution of the tran
 transaction has no paymaster, i.e. the account is willing to pay for the
 transaction. This method should be used to pay for the fees by the account. Note,
 that if your account will never pay any fees and will always rely on the [paymaster](paymasters) feature, you don't have to implement this method.
-This method must send at least `tx.gasprice * tx.gasLimit` ETH to the [bootloader](/zk-stack/components/zksync-evm/bootloader) address.
+This method must send at least `tx.gasprice * tx.gasLimit` ETH to the [bootloader](https://docs.zksync.io/zk-stack/components/zksync-evm/bootloader) address.
 - `prepareForPaymaster` is optional and will be called by the system if the
 transaction has a paymaster, i.e. there is a different address that pays the
 transaction fees for the user. This method should be used to prepare for the
