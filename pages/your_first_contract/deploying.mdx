@@ -1,0 +1,90 @@
+# Deploying the Contract
+
+Now that we've written our sample token contract, we can deploy it to Abstract so it can used.
+
+## Deploy Script
+
+The easiest way to deploy a contract though hardhat is to write a simple deploy script.
+You will need to get the private key of your deployment wallet and add it to the script.
+
+The script should be located at `/deploy/deploy.ts`. You may need to create a new `/deploy` directory.
+
+**We recommend not using the private key of a real wallet that holds assets on any other chain. Use a fresh wallet specifically for deployment.**
+
+Here's a sample script for deploying our token contract:
+```typescript
+import { utils, Wallet } from "zksync-ethers";
+import * as ethers from "ethers";
+import { HardhatRuntimeEnvironment } from "hardhat/types";
+import { Deployer } from "@matterlabs/hardhat-zksync";
+ 
+// An example of a deploy script that will deploy and call a simple contract.
+export default async function (hre: HardhatRuntimeEnvironment) {
+  console.log(`Running deploy script`);
+ 
+  // Initialize the wallet.
+  const wallet = new Wallet(<YOUR PRIVATE KEY>); // Replace this with your deployment wallet's private key
+ 
+  // Create deployer object and load the artifact of the contract we want to deploy.
+  const deployer = new Deployer(hre, wallet);
+  // Load contract
+  const artifact = await deployer.loadArtifact("SampleToken");
+ 
+  // Deploy this contract. The returned object will be of a `Contract` type,
+  // similar to the ones in `ethers`.
+  const tokenCountract = await deployer.deploy(artifact);
+ 
+  // Show the contract info.
+  console.log(`${artifact.contractName} was deployed to ${await tokenCountract.getAddress()}`);
+}
+```
+
+## Deploying
+
+We can then run the above script to deploy the contract. You can execute the following command:
+```bash
+npx hardhat deploy-zksync --script deploy.ts --network abstractTestnet
+```
+
+You should see the following output in your terminal if everything executed correctly:
+```bash
+Running deploy script
+SampleToken was deployed to CONTRACT_ADDRESS
+```
+
+You can see your deployed contract in the block explorer by taking the `CONTRACT_ADDRESS` from above and visting the following url:
+`https://explorer.testnet.abs.xyz/address/CONTRACT_ADDRESS`.
+
+## Verifying the Contract
+
+The contract is deployed, but it cannot be viewed by anyone else because only the raw bytecode is visible to the explorer.
+To make the contract readable by anyone else, we can verify the code on the explorer through zkSync's `Hardhat verify plugin`.
+
+To start, we can install the verification plugin by running the following:
+```bash
+# For npm
+npm i -D @matterlabs/hardhat-zksync-verify
+ 
+# For yarn
+yarn add -D @matterlabs/hardhat-zksync-verify @nomicfoundation/hardhat-verify
+```
+
+Once installed, we can verify our contract by running the verification command:
+```bash
+npx hardhat verify --network abstractTestnet CONTRACT_ADDRESS
+```
+
+If the command works, you should see the following output in your terminal:
+```bash
+Your verification ID is: <ID>
+Contract successfully verified on ZKsync block explorer!
+```
+
+You can now visit `https://explorer.testnet.abs.xyz/address/CONTRACT_ADDRESS` and see your contract code fully visible!
+
+It should look something like this:
+<div style={{ display: "flex", justifyContent: "center", marginTop: 20 }}>
+  <img style={{ maxWidth: "100%" }} src="/assets/verified-contract.png" />
+</div>
+
+**Congratulations, you've just written, compiled, and deployed your first contract to Abstract!**
