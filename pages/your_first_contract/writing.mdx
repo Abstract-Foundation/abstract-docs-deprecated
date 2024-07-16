@@ -1,0 +1,96 @@
+# Writing the Contract
+
+For this tutorial we will be writing a very simple ERC20 token.
+
+## Installing OpenZeppelin
+
+OpenZeppelin has written an open source library of common smart contracts that can be used in contract development.
+These contracts are heavily audited and have been vetted by the community. You can find the source code [here](https://github.com/OpenZeppelin/openzeppelin-contracts).
+
+To install OpenZeppelin, run the following command:
+```bash
+# For npm
+npm install @openzeppelin/contracts
+
+# For yarn
+yarn add @openzeppelin/contracts
+```
+
+## Contract Code
+
+Once OpenZeppelin is installed, we can write our simple ERC20 token contract. In the `/contracts` directory, you can delete `Lock.sol` and add an empty `SampleToken.sol` file.
+
+We'll go through the contract line by line.
+
+First, define the license type and Solidity version at the top of the file. For our example, we'll use the MIT license and Solidity 0.8.24.
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.24;
+```
+
+Next, we'll import OpenZeppelin's base ERC20 contract which will include most of the token logic for us.
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.24;
+
+import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+```
+
+From there, we'll declare our contract name and the OpenZeppelin ERC20 contract inheritance:
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.24;
+
+contract SampleToken is ERC20 {}
+```
+
+Next, we'll define a constructor that will set the token's name and symbol. In this case our token has the name `SampleToken` and the symbol `SAMPLE`:
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.24;
+
+import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+
+contract SampleToken is ERC20 {
+    constructor() ERC20("SampleToken", "SAMPLE") {}
+}
+```
+
+Finally, we'll add a `mint` function that allows anyone to mint any amount of tokens (do not do this in production):
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.24;
+
+import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+
+contract SampleToken is ERC20 {
+    constructor() ERC20("SampleToken", "SAMPLE") {}
+
+    function mint(address account, uint256 amount) external {
+        _mint(account, amount);
+    }
+}
+```
+
+## Compiling the Code
+
+Once the code has been written, it must be compiled to ensure the code is valid and so it can be deployed later on.
+
+To compile your code, you can run:
+```bash
+# For npm
+npx hardhat compile --network abstractTestnet
+
+# For yarn
+yarn hardhat compile --network abstractTestnet
+```
+
+You should see an output that looks like this:
+```bash
+Compiling contracts for ZKsync Era with zksolc v1.5.1 and zkvm-solc v0.8.24-1.0.1
+Compiling 17 Solidity files
+Successfully compiled 17 Solidity files
+```
+
+**Congrats, you've now written your first contract!**
