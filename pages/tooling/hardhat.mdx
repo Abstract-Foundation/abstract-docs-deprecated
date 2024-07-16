@@ -124,7 +124,7 @@ const config: HardhatUserConfig = {
     },
   },
   solidity: {
-    version: "0.8.13",
+    version: "0.8.24",
   },
   // OTHER SETTINGS...
 };
@@ -138,7 +138,7 @@ To compile your contracts for Abstract, run:
 
 ```bash
 # For npm
-npm hardhat compile  --network abstractTestnet
+npx hardhat compile  --network abstractTestnet
 
 # For yarn
 yarn hardhat compile --network abstractTestnet
@@ -193,7 +193,7 @@ Include your deployment script in the `deploy` folder and execute it running:
 
 ```bash
 # For npm
-npm hardhat deploy-zksync --script SCRIPT_FILENAME.ts --network abstractTestnet
+npx hardhat deploy-zksync --script SCRIPT_FILENAME.ts --network abstractTestnet
 
 # For yarn
 yarn hardhat deploy-zksync --script SCRIPT_FILENAME.ts --network abstractTestnet
@@ -222,4 +222,116 @@ You can read more in the [`zksync-ethers` documentation](https://docs.zksync.io/
 
 ## Verify contracts
 
-Verify your contracts programmatically using the [`Hardhat verify plugin`](https://docs.zksync.io/build/tooling/hardhat/hardhat-zksync-verify).
+Verify your contracts programmatically using the `Hardhat verify plugin`. Full documentation can be found [here](https://docs.zksync.io/build/tooling/hardhat/hardhat-zksync-verify).
+
+The [@matterlabs/hardhat-zksync-verify](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-verify) plugin
+is used in conjunction with [@nomicfoundation/hardhat-verify](https://www.npmjs.com/package/@nomicfoundation/hardhat-verify)
+and it supports backward compatibility.
+To use it, install both plugins and then import `@matterlabs/hardhat-zksync-verify` in the `hardhat.config.ts` file.
+
+
+```bash
+# For npm
+npm i -D @matterlabs/hardhat-zksync-verify
+
+# For yarn
+yarn add -D @matterlabs/hardhat-zksync-verify @nomicfoundation/hardhat-verify
+```
+
+### Configuration
+
+Import the plugin in the `hardhat.config.ts` file:
+
+```javascript
+import "@matterlabs/hardhat-zksync-verify";
+```
+
+Add the `verifyURL` property to the ZKsync Era network in the `hardhat.config.ts` file as shown below:
+
+```typescript
+networks: {
+    sepolia: {
+      url: "https://sepolia.infura.io/v3/<API_KEY>" // The Ethereum Web3 RPC URL (optional).
+    },
+    abstractTestnet: {
+      url: "https://api.testnet.abs.xyz",
+      ethNetwork: "sepolia",
+      zksync: true,
+      verifyURL: 'https://api-explorer-verify.testnet.abs.xyz/contract_verification'
+    },
+},
+// defaultNetwork: "abstractTestnet", // optional (if not set, use '--network abstractTestnet')
+```
+
+### Commands
+
+```sh
+# For npm
+npx hardhat verify --network abstractTestnet <contract address>
+
+# For yan
+yarn hardhat verify --network abstractTestnet <contract address>
+```
+
+This command verifies the contract on the given network with the given contract's address.
+
+When executed in this manner, the verification task attempts to compare the compiled bytecode of all the contracts in your local environment
+with the deployed bytecode of the contract you are seeking to verify. If there is no match, it reports an error.
+
+```sh
+# For npm
+npx hardhat verify --network abstractTestnet <contract address> --contract <fully qualified name>
+
+# For yarn
+yarn hardhat verify --network abstractTestnet <contract address> --contract <fully qualified name>
+```
+
+With the `--contract` parameter you can also specify which contract from your local setup you want to verify by specifying its Fully qualified name.
+Fully qualified name structure looks like this: "contracts/AContract.sol:TheContract"
+
+#### Constructor arguments
+
+If your contract was deployed with the specific constructor arguments, you need to specify them when running the verify task. For example:
+
+```sh
+# For npm
+npx hardhat verify --network abstractTestnet 0x7cf08341524AAF292255F3ecD435f8EE1a910AbF "Hi there!"
+
+# For yarn
+yarn hardhat verify --network abstractTestnet 0x7cf08341524AAF292255F3ecD435f8EE1a910AbF "Hi there!"
+```
+
+If your constructor takes a complex argument list, you can write a separate javascript module to export it.
+For example, create an `arguments.js` file with the following structure:
+
+```typescript
+module.exports = [
+  "a string argument",
+  "0xabcdef",
+  "42",
+  {
+    property1: "one",
+    property2: 2,
+  },
+];
+```
+
+Include it in the verify function call by adding a new parameter: `--constructor-args arguments.js`:
+
+```sh
+# For npm
+npx hardhat verify --network abstractTestnet 0x7cf08341524AAF292288F3ecD435f8EE1a910AbF --constructor-args arguments.js
+
+# For yarn
+yarn hardhat verify --network abstractTestnet 0x7cf08341524AAF292288F3ecD435f8EE1a910AbF --constructor-args arguments.js
+```
+
+The hardhat-zksync-verify plugin also supports the verification with encoded constructor parameters.
+
+In order to use the encoded parameters, you need to specify a separate javascript module and export them as a **_non-array_** parameter.
+It is important for encoded arguments to start with `0x` in order to be recognized by the plugin. For example:
+
+```typescript
+module.exports = "0x0x00087a676164696a61310000087a676164696a61310000000000000000000000008537b364a83f5c9a7ead381d3baf9cbb83769bf5";
+```
+
