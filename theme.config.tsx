@@ -60,9 +60,32 @@ const config: DocsThemeConfig = {
   },
   head: (
     <>
+      <meta charSet="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+
+      <title>Abstract</title>
+      <meta name="description" content="Abstract Documentation" />
+      <meta name="author" content="Abstract" />
+      <meta
+        name="keywords"
+        content="Abstract, Documentation, Crypto, Ethereum, Blockchain"
+      />
+
       <meta property="og:title" content="Abstract" />
       <meta property="og:description" content="Abstract Documentation" />
+      <meta property="og:image" content="https://docs.abs.xyz/share.jpg" />
+      <meta property="og:url" content="https://docs.abs.xyz" />
+      <meta property="og:type" content="website" />
+      <meta property="og:site_name" content="Abstract" />
+
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="Abstract" />
+      <meta name="twitter:description" content="Abstract Documentation" />
+      <meta name="twitter:image" content="https://docs.abs.xyz/share.jpg" />
+      <meta name="twitter:site" content="@AbstractChain" />
+      <meta name="twitter:creator" content="@AbstractChain" />
+
       <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       <link rel="icon" href="/favicon.png" type="image/png" />
     </>
