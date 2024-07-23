@@ -24,5 +24,10 @@
     "title": "Contract Development"
   },
   "tooling": "Tooling",
-  "your_first_contract": "Your First Contract"
+  "your_first_contract": "Your First Contract",
+  "-- Infrastructure": {
+    "type": "separator",
+    "title": "Infrastructure"
+  },
+  "node": "Abstract Nodes"
 }
