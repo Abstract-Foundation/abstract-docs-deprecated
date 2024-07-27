@@ -10,7 +10,7 @@
 
    ```bash
    git clone https://github.com/Abstract-Foundation/abstract-node
-   cd external-node
+   cd abstract-node/external-node
    ```
 
 ## Running an Abstract Node Locally
@@ -31,9 +31,11 @@
 
 ### Reading Logs
 
+Change `<container name>` to `external-node-external-node-1`
 ```bash
-docker logs -f --tail 100 external-node_external-node_1 <or alternative container name>
+docker logs -f --tail 100 <container name>
 ```
+Alternatives `<container name>` : `external-node-prometheus-1` , `external-node-postgres-1` , `external-node-grafana-1`
 
 ### Resetting the Node State
 
