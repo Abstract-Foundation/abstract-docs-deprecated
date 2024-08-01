@@ -5,7 +5,7 @@ interfaces and follow our recommended best practices for account deployment and 
 
 ### Interface Implementation
 
-Every custom account should implement the [IAccount](design#iaccount-interface)
+Every custom account should implement the [IAccount](https://github.com/Abstract-Foundation/abstract-docs/blob/62bbc18497c58bfa10c61aa51b261c66283bc60d/pages/account_abstraction/design.mdx#L4)
 interface. You can find an example of a typical account implementation, resembling
 standard Externally Owned Accounts (EOA) on Ethereum, in the
 [DefaultAccount.sol](https://github.com/matter-labs/era-contracts/blob/main/system-contracts/contracts/DefaultAccount.sol) on GitHub.
@@ -47,7 +47,7 @@ These limitations are not yet enforceable at the circuit/VM level and do not app
 ### Nonce Management
 
 Both transaction and deployment nonces are consolidated within the
-[NonceHolder](/build/developer-reference/era-contracts/system-contracts#nonceholder) system contract for optimization.
+[NonceHolder](https://github.com/matter-labs/era-contracts/blob/6250292a98179cd442516f130540d6f862c06a16/system-contracts/contracts/NonceHolder.sol#L110) system contract for optimization.
 Use the [incrementMinNonceIfEquals](https://github.com/matter-labs/era-contracts/blob/6250292a98179cd442516f130540d6f862c06a16/system-contracts/contracts/NonceHolder.sol#L110)
 function to safely increment your account's nonce.
 
