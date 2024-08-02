@@ -32,10 +32,10 @@ export default async function (hre: HardhatRuntimeEnvironment) {
  
   // Deploy this contract. The returned object will be of a `Contract` type,
   // similar to the ones in `ethers`.
-  const tokenCountract = await deployer.deploy(artifact);
+  const tokenContract = await deployer.deploy(artifact);
  
   // Show the contract info.
-  console.log(`${artifact.contractName} was deployed to ${await tokenCountract.getAddress()}`);
+  console.log(`${artifact.contractName} was deployed to ${await tokenContract.getAddress()}`);
 }
 ```
 
