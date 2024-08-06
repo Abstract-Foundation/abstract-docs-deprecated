@@ -1,0 +1,29 @@
+# Bridge
+
+A bridge is a tool that allows users to move assets such as ETH from Ethereum to Abstract and vice versa.
+
+Under the hood, bridging works by having two smart contracts deployed:
+
+1. A smart contract deployed to Ethereum (L1).
+2. A smart contract deployed to Abstract (L2).
+
+These smart contracts communicate with each other to facilitate the deposit and withdrawal of assets between the two chains.
+
+## Native Bridge
+
+Abstract has a [native bridge](https://portal.testnet.abs.xyz/bridge/) to move assets between Ethereum and Abstract for free (excluding gas fees).
+
+Currently, the native bridge supports both ETH and ERC-20 tokens.
+
+- Deposits from L1 to L2 take around ~15 minutes.
+- Withdrawals from L2 to L1 currently take up to 24 hours due to the built-in [withdrawal delay](https://docs.zksync.io/build/resources/withdrawal-delay#withdrawal-delay).
+
+If you require faster deposits or withdrawals, you can use [Relay](#relay) for near-instant transfers for a small fee.
+
+## Relay
+
+[Relay](https://testnets.relay.link/abstract) is a third-party bridge that provides near-instant transfers between Ethereum and Abstract for a small fee.
+
+Relay works by maintaining funds on both Ethereum and Abstract and optimistically sends funds before the bridging process completes; allowing for near-instant transfers at the cost of a small fee that is paid to the relayer.
+
+This comes with it&rsquo;s own set of risks and trust assumptions. [Learn more about Relay](https://docs.relay.link/what-is-relay).
