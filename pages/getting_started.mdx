@@ -1,0 +1,68 @@
+import { Steps } from 'nextra/components'
+
+# Get Started with Abstract
+
+This tutorial will guide you through the process of compiling a simple smart contract for Abstract using [Hardhat](https://hardhat.org).
+
+Ensure you have the following prerequisites:
+- Node.js 18 or higher
+- A WSL, Linux, or macOS environment
+
+<Steps>
+
+### Create A New Project
+
+Inside an empty directory, initialize a new Node project using the Hardhat CLI:
+
+```bash
+npx hardhat init
+```
+
+### Install the ZKsync Hardhat Extension
+
+Install the [ZKsync Hardhat extension](https://docs.zksync.io/build/tooling/hardhat/hardhat-zksync):
+
+```bash
+npm i -D @matterlabs/hardhat-zksync
+```
+
+### Update the Hardhat Configuration
+
+Update your `hardhat.config.ts` file to include the plugin and define the Abstract testnet network:
+
+```typescript
+import { HardhatUserConfig } from "hardhat/config";
+ 
+import "@matterlabs/hardhat-zksync";
+ 
+const config: HardhatUserConfig = {
+  zksolc: {
+    version: "latest",
+    settings: {},
+  },
+  defaultNetwork: "abstractTestnet",
+  networks: {
+    abstractTestnet: {
+      url: "https://api.testnet.abs.xyz",
+      ethNetwork: "sepolia",
+      zksync: true,
+      verifyURL: 'https://api-explorer-verify.testnet.abs.xyz/contract_verification',
+    },
+  },
+  solidity: {
+    version: "0.8.24",
+  },
+};
+ 
+export default config;
+```
+
+### Compile Your Smart Contract
+
+Run the following command to compile your smart contract:
+
+```bash
+npx hardhat compile --network abstractTestnet
+```
+
+</Steps>

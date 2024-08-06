@@ -5,6 +5,7 @@
   },
   "index": "Introduction",
   "overview": "Overview",
+  "getting_started": "Getting Started",
   "-- Architecture": {
     "type": "separator",
     "title": "Architecture"
