@@ -9,6 +9,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@cookbookdev/docsbot": "^4.21.15",
     "next": "^14.2.3",
     "nextra": "^2.13.4",
     "nextra-theme-docs": "^2.13.4",
